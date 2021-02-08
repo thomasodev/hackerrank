@@ -12,7 +12,7 @@ process.stdin.on('data', inputStdin => {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', _ => {
+process.stdin.on('end', function() {
     inputString = inputString.replace(/\s*$/, '')
         .split('\n')
         .map(str => str.replace(/\s*$/, ''));
@@ -24,24 +24,20 @@ function readLine() {
     return inputString[currentLine++];
 }
 
-function aVeryBigSum(ar) {
-    let sum = 0;
-    for(let i in ar){
-        sum += ar[i];
-    }
-    return sum;
+function reverseArray(a) {
+    return a.reverse();
 }
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
-    const arCount = parseInt(readLine(), 10);
+    const arrCount = parseInt(readLine(), 10);
 
-    const ar = readLine().split(' ').map(arTemp => parseInt(arTemp, 10));
+    const arr = readLine().split(' ').map(arrTemp => parseInt(arrTemp, 10));
 
-    let result = aVeryBigSum(ar);
+    const res = reverseArray(arr);
 
-    ws.write(result + "\n");
+    ws.write(res.join(' ') + '\n');
 
     ws.end();
 }
